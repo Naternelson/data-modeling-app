@@ -1,7 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+  signIn = () =>{
+
+  }
+
   return (
     <div className="App">
       <header className="App-header">
