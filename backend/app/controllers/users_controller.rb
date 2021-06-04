@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
     def create
+        binding.pry
         @user = User.create user_params 
         if @user && @user.valid?
             @token = encode_token(user_id: @user.id)

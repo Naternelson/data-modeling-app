@@ -1,29 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
 
 
 function App() {
-  signIn = () =>{
-
+  function clickHandler(){
+    const url = "http://localhost/3001/users"
+    const data = {
+      user: {
+        username: "naternelson", 
+        email: "email@email.com", 
+        password: 1234, 
+        first_name: "Mr.", 
+        last_name: "Smith", 
+        password_confirmation: 1234
+      }
+    }
+    const options = {
+      method: "POST",
+      headers: {Authorization: 'Bearer token'},
+      body: JSON.stringify(data)
+    }
+    fetch(url, options).then((res)=>res.json()).then((res)=>console.log("Success", res)).catch((mes) => console.log("FAILED", mes))
   }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <button onClick={clickHandler}>Click Me</button>
   );
 }
 
