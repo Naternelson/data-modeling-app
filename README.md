@@ -1,2 +1,1 @@
 # warehouse-stock-app
-Test
