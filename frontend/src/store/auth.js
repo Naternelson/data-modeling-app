@@ -1,5 +1,10 @@
-//Action types
-export const USER_SIGNIN = "signin"
+import {createSlice} from '@reduxjs/toolkit'
 
-//Action creators
-export const  signin = ""
+//Slice
+createSlice({
+    name: "auth",
+    initialState = {},
+    reducers = {}
+})
+
+export default slice.reducer
