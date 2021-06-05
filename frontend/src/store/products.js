@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
-
+let lastId = 0
 //Slice
-createSlice({
+const slice = createSlice({
     name: "products",
-    initialState = [],
-    reducers = {
+    initialState: [],
+    reducers: {
         addProduct: (state, action) => {
             state.push({
                 id: ++lastId,

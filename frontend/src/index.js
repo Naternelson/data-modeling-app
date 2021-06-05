@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import configureStore from './store/configureStore'
 const store = configureStore()
 
-/* ReactDOM.render(
+ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
-); */
+);
 const unsubscribe = store.subscribe(()=>{
   console.log("Store Changed", store.getState())
 })

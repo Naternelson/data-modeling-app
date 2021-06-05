@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 //Slice
-createSlice({
+const slice = createSlice({
     name: "auth",
-    initialState = {},
-    reducers = {}
+    initialState: {},
+    reducers: {}
 })
 
 export default slice.reducer
