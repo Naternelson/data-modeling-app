@@ -1,0 +1,30 @@
+
+.hero {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 2em;
+  }
+  .hero img{
+    border-radius: 50%;
+  }
+  
+  .hero form {
+    position: absolute;
+    left: Calc(50% + 30px);
+    top: 80%; 
+    background-color: grey;
+    color: white;
+    padding: .5em 1em;
+    border-radius: 25px;
+  }
+  .hero form label {
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .hero form input {
+      width: 0;
+      height: 0;
+  }

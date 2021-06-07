@@ -1,0 +1,12 @@
+nav {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px ;
+    align-content: center;
+}
+nav span{
+    background-color: aqua;
+    width: 100%;
+    padding: 0 20px;
+}
