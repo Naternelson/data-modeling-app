@@ -1,15 +1,19 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar'
 import Main from './components/main/Main'
-import DataModelCard from './components/cards/DataModelCard/DataModelCard'
+import StoreContext from './store/configureStore'
+import { Provider } from 'react-redux'
+
+const store = StoreContext()
 function App() {
-    const cardCollection = []
-    for(let i = 0; i < 10; i++) cardCollection.push(<DataModelCard key={i}/>)
     return (
-    <div className={"container"}>
-      <Navbar/>
-      <Main/>
-    </div>
+      <Provider store={store}>
+        <div className={"container"}>
+          <Navbar/>
+          <Main/>
+        </div>
+      </Provider>
+    
   );
 }
 
