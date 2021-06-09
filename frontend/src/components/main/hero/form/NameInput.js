@@ -4,9 +4,8 @@ import { changeCSVName } from '../../../../store/forms/newCSV'
 function Form() {
     const csvName = useSelector((state)=> state.forms.newCSVForm.name)
     const dispatch = useDispatch()
-
     function changeEvent(e){
-        dipatch(changeCSVName({name: e.target.value}))
+        dispatch(changeCSVName({name: e.target.value}))
     }
     return (
         <div className={"form-row"}>

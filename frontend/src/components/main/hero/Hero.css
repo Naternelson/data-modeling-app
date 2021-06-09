@@ -5,26 +5,72 @@
     justify-content: center;
     align-content: center;
     padding: 2em;
+    white-space: nowrap;
   }
-  .hero img{
-    border-radius: 50%;
-  }
-  
-  .hero form {
-    position: absolute;
-    left: Calc(50% + 30px);
-    top: 80%; 
-    background-color: grey;
-    color: white;
-    padding: .5em 1em;
-    border-radius: 25px;
-  }
-  .hero form label {
-    cursor: pointer;
-    text-align: center;
-  }
+.csv-upload-node{
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  opacity: 0.5;
+  object-fit: cover;
+}
+.csv-upload-node.enter-done{
+  width: 200px;
+  height: 200px;
+}
+.csv-form-node{
+  width: 33%;
+  margin-left: 5em;
+}
+#open-csv-form {
+  position: absolute;
+  left: Calc(50% + 30px);
+  top: 80%; 
+  background-color: grey;
+  color: white;
+  padding: .5em 1em;
+  border-radius: 25px;
+  cursor: pointer;
+}
 
-  .hero form input {
-      width: 0;
-      height: 0;
-  }
+/* Transition Upload Image */
+  /* Start Enter */
+/* .csv-upload-node.enter, .csv-upload-node.appear{
+  opacity: 0;
+} */
+  /* End Enter */
+.csv-upload-node.enter-active, .csv-upload-node.appear-active {
+  height: 200px;
+  width: 200px;
+  transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+
+/* Transition CSV Form */
+  /* Start Enter */
+.csv-form-node.enter, .csv-form-node.appear{
+  opacity: 0;
+  width: 0;
+  overflow-x: hidden;
+  margin: 0;
+}
+  /* End Enter */
+.csv-form-node.enter-active, .csv-form-node.appear-active{
+  opacity: 1;
+  margin-left: 5em;
+  transition: opacity 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  transition: padding-left 600ms cubic-bezier(0.25, 1, 0.5, 1);
+  width: 33%;
+  transition: width 600ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+  /* Start Exit */
+.csv-form-node-exit{
+  opacity: 0.5;
+}
+  /* End Exit */
+.csv-form-node-exit-active{
+  opacity: 0;
+  transition: opacity 300ms
+}

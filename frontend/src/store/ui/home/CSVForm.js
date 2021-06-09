@@ -33,8 +33,9 @@ const slice = createSlice({
         },
         removeErrors: (state, action) => {
             if (action.payload?.all) return state.errors = {} 
-            for(let i in action.payload.errors) {
-                if (state.errors[i]) delete state.errors[i]
+            for(let i of action.payload.errors) {
+                const err = action.payload.errors[i]
+                if (state.errors[err]) delete state.errors[err]
             }
         }
     }

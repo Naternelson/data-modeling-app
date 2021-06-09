@@ -11,3 +11,13 @@ div {
   flex-direction: row;
 }
 
+select option[data-default]{
+  height: 0;
+  background-color: #888;
+}
+form label{
+  display: block;
+}
+.input-btn{
+  display: inline
+}
