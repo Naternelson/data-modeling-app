@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 //Slice
 const slice = createSlice({
     name: "newCSVForm",
-    initialState: {},
+    initialState: {name: "", dataModel: ""},
     reducers: {
         addCSV: (state, action) => {
             return state = {

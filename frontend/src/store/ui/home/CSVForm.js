@@ -2,45 +2,44 @@ import {createSlice} from '@reduxjs/toolkit'
 //Slice
 const slice = createSlice({
     name: "CSVForm",
-    initialState: {focus: false, ready: false, errors: {}},
+    initialState: {focus: "blurred", status: false, errors: {}},
     reducers: {
-        toggleFormFocus: (state) => {
-            state.focus = !state.focus
+        transitionFormOn: (state) => {
+            state.focus = "transitioningOn"
         },
-        changeFormFocus: (state, action) => {
-            state.focus = !!action.payload.focus
+        transitionFormOff: (state) => {
+            state.focus = "transitioningOff"
         },
         focusForm: (state) => {
-            state.focus = true
+            state.focus = "focused"
         },
         blurForm: (state) => {
-            state.form = false
+            state.focus = "blurred"
         },
         resetForm: () => {
-            return {focus: false, ready: false, errors: {}}
+            return {focus: "blurred", status: "incomplete", errors: {}}
         },
         formReady: (state) => {
-            state.ready = true
+            state.status = "ready"
         },
         formNotReady: (state) => {
-            state.ready = false
-        },
-        toggleFormReady: (state) => {
-            state.ready = !state.ready
+            state.status = "incomplete"
         },
         addErrors: (state, action) => {
-            let nextErr = Object.keys(state.errors).length && Math.max(...Object.keys(state.errors).map((e)=>parseInt(e, 10))) + 1
-            for(let i of action.payload.errors){
-                state.errors[nextErr] = action.payload.errors[i]
-                ++nextErr
+            for(let i in action.payload.errors){
+                state.errors[i] = action.payload.errors[i]
             }
+
         },
         removeErrors: (state, action) => {
             if (action.payload?.all) return state.errors = {} 
-            for(let i of action.payload.errors) delete state.errors[i]
+            for(let i in action.payload.errors) {
+                if (state.errors[i]) delete state.errors[i]
+            }
         }
     }
 })
 
-export const {toggleFormFocus, changeFormFocus, focusForm, blurForm, resetForm, formReady, formNotReady, toggleFormReady, addErrors, removeErrors} = slice.actions
+export const {transitionFormOn, transitionFormOff, focusForm, blurForm, resetForm, formReady, formNotReady, addErrors, removeErrors} = slice.actions
+
 export default slice.reducer

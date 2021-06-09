@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import NewCSVFormReducer from "./newCSV"
+import homeReducer from "./home/home"
 
 export default combineReducers({
-    mainPage: NewCSVFormReducer
+    home: homeReducer
 })
