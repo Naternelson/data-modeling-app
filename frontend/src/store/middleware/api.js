@@ -5,6 +5,7 @@ const api = ({dispatch}) => next => async action => {
     const {url, method, data, onSuccess, onError} = action.payload
     try {
         const res = await axios.request({
+            
             baseURL: process.env.REACT_APP_BASE_URL,
             url, method, data
         })
