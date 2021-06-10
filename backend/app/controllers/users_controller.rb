@@ -2,13 +2,22 @@ class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
     def create
-        binding.pry
         @user = User.create user_params 
         if @user && @user.valid?
-            @token = encode_token(user_id: @user.id)
-            render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+            token = encode_token(user_id: @user.id)
+            render json: { @user: UserSerializer.new(@user), jwt: token }, status: :created
         else 
-            render json: { error: 'failed to create user' }, status: :not_acceptable
+            render json: { error: 'failed to create user', messages: @user.errors.full_messages }, status: :not_acceptable
+        end
+    end
+
+    def destroy
+        id = current_user.id
+        current_user.destroy 
+        if !current_user do 
+            render json: { messages: ["User with an id of #{id} successfully deleleted from the database"]}
+        else 
+            render json: { errors: current_user.errors.full_messages}
         end
     end
 
