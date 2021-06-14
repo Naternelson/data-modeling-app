@@ -4,7 +4,7 @@ import { apiCallBegan } from './api'
 const slice = createSlice({
     name: "auth",
     initialState: {
-        isLoggedIn: false, 
+        token: null, 
         id: null, 
         loading: false,
         lastFetch: null,
@@ -12,15 +12,16 @@ const slice = createSlice({
     },
     reducers: {
         userAuthenticated: (state, action) => {
-            state.isLoggedIn = true
-            state.id = action.payload.id || action.payload.user.id 
-            state.user = action.payload.user 
+            state.token = action.payload.data.jwt
+            state.id = action.payload.data.id
+            state.user = action.payload.data.user.attributes
+            state.loading = false
         },
         userChanged: (state, action) => {
-            state.user = action.payload.user 
+            state.user = action.payload.data.user.attributes
         },
         logoutUser: (state) => {
-            state.isLoggedIn = false
+            state.token = null
             state.id = null
             state.loading = false
             state.user = {}
@@ -35,6 +36,7 @@ export default slice.reducer
 
 export const loginUser = data => apiCallBegan({
     url: "/login",
+    method: 'post',
     data,
     onSuccess: userAuthenticated.type,
 })

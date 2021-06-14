@@ -1,13 +1,13 @@
-import {useDispatch} from 'react-redux'
-import * as actions from '../../../store/api'
+import { useDispatch, useSelector } from 'react-redux'
+import {loginUser} from '../../../store/auth'
 function Login() {
     const dispatch = useDispatch()
-    const submitEvent = (e) => {
+    const isLoggedIn = useSelector(s => !!s.auth.token)
+    function submitEvent(e){
         e.preventDefault()
-        const [username, password] = e.target.querySelector("input")
-        dispatch(actions.apiCallBegan({
-            
-        }))
+        const [u, p] = e.target.querySelectorAll("input")  
+        const [username, password] = [u.value, p.value]      
+        dispatch(loginUser({username, password}))
     }
    return  <div>
         <form onSubmit={submitEvent}>
@@ -21,6 +21,7 @@ function Login() {
                 <input type={"password"} id={"password"} name={"password"}/>
             </div>
             <button className="btn-flat">Login</button>
+            <div>{isLoggedIn ? "Hello World" : "goodbyeWorld"}</div>
         </form>
     </div>
 }
