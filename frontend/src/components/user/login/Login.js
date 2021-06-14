@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 import {loginUser} from '../../../store/auth'
 function Login() {
     const dispatch = useDispatch()
@@ -9,6 +10,7 @@ function Login() {
         const [username, password] = [u.value, p.value]      
         dispatch(loginUser({username, password}))
     }
+    if (isLoggedIn) return <Redirect to="/"/>
    return  <div>
         <form onSubmit={submitEvent}>
             <h1>Login with Username or Email</h1>

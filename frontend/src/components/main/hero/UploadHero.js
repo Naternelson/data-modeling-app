@@ -4,11 +4,15 @@ import { useSelector, useDispatch } from "react-redux"
 import { focusForm}  from "../../../store/ui/home/CSVForm"
 import {CSSTransition} from 'react-transition-group'
 import Form from "./form/Form"
+import { useHistory } from "react-router-dom"
 function UploadHero() {
     const {focus} = useSelector((state) => state.ui.home.CSVForm)
+    const isLoggedIn = useSelector(s => s.auth.token)
     const dispatch = useDispatch()
-    function clickEvent(e){
-        dispatch(focusForm())
+    const history = useHistory()
+    function clickEvent(){
+        if (isLoggedIn) return dispatch(focusForm())
+        history.push('/login')
     }
     return (
     <div className={"hero"}>
