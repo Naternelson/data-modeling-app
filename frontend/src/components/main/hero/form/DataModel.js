@@ -22,7 +22,7 @@ function Form() {
     function blurEvent(e){
         if (!e.target.value){ 
             dispatch(addErrors({errors: {noDataModelSelected: "You must select a Data Model for the given CSV File"}}))
-            dispatch(formNotReady())    
+            // dispatch(formNotReady())    
         } else {
             dispatch(removeErrors({errors: ["noDataModelSelected"]}))
         }

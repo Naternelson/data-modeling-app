@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import {formNotReady, transitionFormOn, focusForm, addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
 function Form() {
-    const {status, errors} = useSelector((state) => state.ui.home.CSVForm)
+    const {errors} = useSelector((state) => state.ui.home.CSVForm)
     const dispatch = useDispatch()
     const rowClasses = ["form-row"]
     let errDisplay = "none" 
@@ -16,15 +16,11 @@ function Form() {
         switch(fileType){
             case "csv":
                 dispatch(removeErrors({errors: ["wrongFileType"]}))
-                dispatch(transitionFormOn())
-                setTimeout(() => dispatch(focusForm()), (1000));
                 break
             default:
                 dispatch(addErrors({errors: {
                     wrongFileType: `The file selected is a .${fileType} file. Please Upload a .csv File.`
-                }}))
-                if (status === "ready") dispatch(formNotReady())
-        }
+                }}))        }
     }
     return (
         <div className={rowClasses.join(" ")}>
