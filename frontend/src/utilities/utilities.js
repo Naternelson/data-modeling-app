@@ -1,4 +1,6 @@
-import capitalize from './capitalize'
-export {capitalize}
+import {capitalize, toTitleCase } from './capitalize'
+import {toJSX} from './jsx-utilities'
+import { unless } from './boolean'
+export {capitalize, toTitleCase, toJSX, unless}
 
 

@@ -5,6 +5,7 @@ import StoreContext from './store/configureStore'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/user/login/Login'
+import Signup from './components/user/signup/Signup'
 
 const store = StoreContext()
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Navbar/>
                 <Route exact path="/" component={Main}/>
                 <Route exact path="/login" component={Login}/>
+                <Route exact path="/signup" component={Signup}/>
             </>
         </Router>
       </Provider>

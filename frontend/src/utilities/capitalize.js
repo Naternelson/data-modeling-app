@@ -1,4 +1,5 @@
-export default function capitalize(input){
+export  function capitalize(input, deliminter){
+    if (deliminter) input = input.split(deliminter)
     const inputType = Array.isArray(input) ? "array" : typeof input
     let upCaseFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1)
@@ -11,4 +12,8 @@ export default function capitalize(input){
         default:
             return null
     }
+}
+export const toTitleCase = str => {
+    let r = str.replace( /([A-Z])/g, " $1" )
+    return capitalize(r, " ")
 }
