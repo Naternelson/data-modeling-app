@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import {loginUser} from '../../../store/auth'
 import Form, {Input} from "../../form-components/Form";
-import { RedirectIfLoggedOut, LoggedOff } from '../../routes/Redirects';
+import { RedirectIfLoggedOut, IsLoggedIn } from '../../routes/Redirects';
 // function Signup() {
 //     // const dispatch = useDispatch()
 //     const submitEvent = (e) => {
@@ -23,9 +23,8 @@ import { RedirectIfLoggedOut, LoggedOff } from '../../routes/Redirects';
 //     </div>
 // }
 const Signup = () => {
-    if(LoggedOff) return RedirectIfLoggedOut()
-    return <Form>
-        <Input name="firstName"/>
+    return RedirectIfLoggedOut() || <Form>
+        <Input name={"firstName"}/>
         <Input name={"lastName"}/>
         <Input name={"username"}/>
         <Input name={"email"} type={"email"}/>

@@ -1,10 +1,13 @@
 import {  useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 
-export const LoggedOff = useSelector(s => !s.auth.token)
-export const LoggedIn = !LoggedOff
+export const IsLoggedIn = () => {
+    return  useSelector(s => !!s.auth.token)
+}
+
 export const RedirectIfLoggedOut = (props) => {
+    const isLoggedIn = IsLoggedIn()
     const to = props?.to || '/'
-    if(LoggedIn) return <Redirect to={to}/>
+    if(isLoggedIn) return <Redirect to={to}/>
     return false
 }
