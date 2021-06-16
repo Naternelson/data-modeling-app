@@ -4,7 +4,6 @@ const  InputGroup = props => {
     let  {type, id, name, label, onChange, onBlur, classInput, value, hasLabel, errorMessage, options, placeholder} = props
     const anon = ()=>{}
     const listId = !options || options?.count === 0 ? "" :(id || name) + "List"
-    console.log(!!options, options?.count !== 0, listId)
     onChange = onChange || anon
     type = type || "text"
     hasLabel =  hasLabel !== false 

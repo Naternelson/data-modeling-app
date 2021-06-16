@@ -1,5 +1,6 @@
 export const findIn = el => selector => {
     const selectors = [
+        selector,
         `#${selector}`,
         `input[name=${selector}]`,
         `select[name=${selector}]`,

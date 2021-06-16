@@ -8,7 +8,8 @@ const api = ({dispatch, getState}) => next => async action => {
     let {url, method, data, onSuccess, headers, onError} = action.payload
     const token = getState().auth.token
     const auth = {'Authorization': `Bearer ${token}`}
-    headers = headers ? token ? {...headers, ...auth} : auth : {}
+    const standardHeader = {Content:""}
+    headers = headers ? token ? {...headers, ...auth, ...standardHeader} : {...headers, ...standardHeader} : standardHeader 
     try {
         const res = await axios.request({baseURL: process.env.REACT_APP_BASE_URL, url, method, data, headers})
         dispatch(actions.apiCallSuccess(res.data))

@@ -4,7 +4,7 @@ const Form = props => {
     const isOn = autocomplete !==false ? "on" : "off"
     const submitEvent = (e) => {
         e.preventDefault()
-        typeof submit === "function" ? submit(e.target) : null
+        const foo = typeof submit === "function" ? submit(e.target) : null
     }
    return  <form id={id} onSubmit={submitEvent} name={name} autoComplete={isOn}>{children}</form>
 }
