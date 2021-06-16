@@ -3,11 +3,12 @@ class Project < ApplicationRecord
         uninitiated: "uninitiated",
         progress: "in_progress",
         error: "error",
+        paused: "paused",
         complete: "complete"
     }
     belongs_to :user 
-    validate_presence_of [:name, :status, :model, :attachment]
+    validates_presence_of [:name, :status, :model, :attachment]
+    validates :status, inclusion: {in: STATUSTYPES.values}
     mount_uploader :attachment, AttachmentUploader
-
     
 end

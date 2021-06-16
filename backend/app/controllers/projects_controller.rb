@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   def create
     project = @user.projects.build project_params
-    project.status = project.STATUSTYPES[:uninitiated]
+    project.status = Project::STATUSTYPES[:uninitiated]
     project.save
     if project
       render json: { projects: ProjectSerializer.new(project) }, status: :ok
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    
+
   end
 
   def show
