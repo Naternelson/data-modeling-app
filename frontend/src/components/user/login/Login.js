@@ -1,31 +1,30 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
+import {useState} from 'react'
+import { useDispatch } from 'react-redux'
+import { RedirectIfLoggedIn} from '../../routes/Redirects';
 import {loginUser} from '../../../store/auth'
-import {formatForRequest} from '../../../utilities/utilities'
-function Login() {
+import {formatForRequest, useStateSetter} from '../../../utilities/utilities'
+import Form, {Input} from "../../form-components/Form";
+
+const Login = () => {
+    //hooks
     const dispatch = useDispatch()
-    const isLoggedIn = useSelector(s => !!s.auth.token)
-    function submitEvent(e){
-        e.preventDefault()
-        const [u, p] = e.target.querySelectorAll("input")  
-        const [username, password] = [u.value, p.value]      
+    const stateSetter = useStateSetter()
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+    //events
+    const  submitEvent = () => {    
         dispatch(loginUser(formatForRequest({required:{username, password}})))
     }
-    if (isLoggedIn) return <Redirect to="/"/>
-   return  <div>
-        <form onSubmit={submitEvent}>
-            <h1>Login with Username or Email</h1>
-            <div>
-                <label htmlFor={"username"}>Username</label>
-                <input type={"text"} id={"username"} name={"username"}/>
-            </div>
-            <div>
-                <label htmlFor={"password"}>Password</label>
-                <input type={"password"} id={"password"} name={"password"}/>
-            </div>
-            <button className="btn-flat">Login</button>
-            <div>{isLoggedIn ? "Hello World" : "goodbyeWorld"}</div>
-        </form>
-    </div>
+
+    //render
+    return RedirectIfLoggedIn() || <>
+    <Form submit={submitEvent}>
+        <h1 className="title">Login with Username or Email</h1>
+        <Input name={"username"} onChange={stateSetter(setUsername)}/>
+        <Input name={"password"} onChange={stateSetter(setPassword)}/>
+    </Form>
+    </>
 }
+
 export default Login;
