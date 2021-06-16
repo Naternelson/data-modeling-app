@@ -12,13 +12,13 @@ const slice = createSlice({
     },
     reducers: {
         userAuthenticated: (state, action) => {
-            state.token = action.payload.data.jwt
-            state.id = action.payload.data.id
-            state.user = action.payload.data.user.attributes
+            state.token = action.payload.jwt
+            state.id = action.payload.id
+            state.user = action.payload.user.attributes
             state.loading = false
         },
         userChanged: (state, action) => {
-            state.user = action.payload.data.user.attributes
+            state.user = action.payload.user.attributes
         },
         logoutUser: (state) => {
             state.token = null
@@ -36,6 +36,13 @@ export default slice.reducer
 
 export const loginUser = data => apiCallBegan({
     url: "/login",
+    method: 'post',
+    data: data.data,
+    onSuccess: userAuthenticated.type
+})
+
+export const signupUser = data => apiCallBegan({
+    url: "/signup",
     method: 'post',
     data: data.data,
     onSuccess: userAuthenticated.type

@@ -3,9 +3,7 @@ export const formatForRequest = obj => {
         ok: false,
         data: {}
     }
-    console.log("object", obj)
     const getFiltered = value => {
-        console.log("Value", value)
         const toObj = arr => {
             const obj = {}
             for(let i of arr){
