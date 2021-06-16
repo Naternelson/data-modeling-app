@@ -8,6 +8,12 @@ export const IsLoggedIn = () => {
 export const RedirectIfLoggedOut = (props) => {
     const isLoggedIn = IsLoggedIn()
     const to = props?.to || '/'
+    if(!isLoggedIn) return <Redirect to={to}/>
+    return false
+}
+export const RedirectIfLoggedIn = (props) => {
+    const isLoggedIn = IsLoggedIn()
+    const to = props?.to || '/'
     if(isLoggedIn) return <Redirect to={to}/>
     return false
 }

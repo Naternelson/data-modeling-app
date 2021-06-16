@@ -1,11 +1,11 @@
 import {toTitleCase } from '../../utilities/utilities'
 import Datalist from './Datalist'
 const  InputGroup = props => {
-    let  {type, id, name, label, changeFunc, classInput, value, hasLabel, errorMessage, options} = props
+    let  {type, id, name, label, onChange, onBlur, classInput, value, hasLabel, errorMessage, options, placeholder} = props
     const anon = ()=>{}
     const listId = !options || options?.count === 0 ? "" :(id || name) + "List"
     console.log(!!options, options?.count !== 0, listId)
-    changeFunc = changeFunc || anon
+    onChange = onChange || anon
     type = type || "text"
     hasLabel =  hasLabel !== false 
     
@@ -14,7 +14,7 @@ const  InputGroup = props => {
     const classValue = classInput.join(" ")
 
     const labelValue = hasLabel ? <label htmlFor={id || name}>{label || toTitleCase(name)}</label> : ""
-    const inputValue = <input type={type} id={id || name} name={name || id} onChange={changeFunc} value={value} list={listId}/>
+    const inputValue = <input type={type} id={id || name} name={name || id} onBlur={onBlur} onChange={onChange} placeholder={placeholder} value={value} list={listId}/>
     const errorValue = errorMessage ? <p className="error-input">{errorMessage}</p> : ""
 
    return  <div className={classValue} >
