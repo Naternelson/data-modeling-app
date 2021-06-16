@@ -37,6 +37,6 @@ export default slice.reducer
 export const loginUser = data => apiCallBegan({
     url: "/login",
     method: 'post',
-    data,
-    onSuccess: userAuthenticated.type,
+    data: data.data,
+    onSuccess: userAuthenticated.type
 })

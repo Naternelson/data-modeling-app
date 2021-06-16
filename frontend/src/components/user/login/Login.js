@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 import {loginUser} from '../../../store/auth'
+import {formatForRequest} from '../../../utilities/utilities'
 function Login() {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(s => !!s.auth.token)
@@ -8,7 +9,7 @@ function Login() {
         e.preventDefault()
         const [u, p] = e.target.querySelectorAll("input")  
         const [username, password] = [u.value, p.value]      
-        dispatch(loginUser({username, password}))
+        dispatch(loginUser(formatForRequest({required:{username, password}})))
     }
     if (isLoggedIn) return <Redirect to="/"/>
    return  <div>

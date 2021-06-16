@@ -3,8 +3,9 @@ export const formatForRequest = obj => {
         ok: false,
         data: {}
     }
-
+    console.log("object", obj)
     const getFiltered = value => {
+        console.log("Value", value)
         const toObj = arr => {
             const obj = {}
             for(let i of arr){
@@ -12,7 +13,7 @@ export const formatForRequest = obj => {
                 obj[key] = value
             }
         }
-        const asArray = Object.entries(obj[value])
+        const asArray = Object.entries(value)
         const filtered = asArray.filter(([,value]) => value !== "" || value !== null || value !== undefined )
         
         const asObject = toObj(asArray)
