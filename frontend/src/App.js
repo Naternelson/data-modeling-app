@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/user/login/Login'
 import Signup from './components/user/signup/Signup'
-import ProjectMain from './components/main/projects/ProjectMain';
+import ProjectMain from './components/main/projects/Main';
 
 const store = StoreContext()
 function App() {
