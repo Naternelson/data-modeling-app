@@ -1,4 +1,4 @@
-import UploadHero from "./hero/UploadHero"
+import UploadHero from "./UploadHero"
 function Main() {
    return  <div className={"container"}>
        <UploadHero/>

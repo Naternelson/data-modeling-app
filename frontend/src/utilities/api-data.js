@@ -10,10 +10,11 @@ export const formatForRequest = obj => {
                 const [key, value] = i 
                 obj[key] = value
             }
+            return obj
         }
         const asArray = Object.entries(value)
         const filtered = asArray.filter(([,value]) => value !== "" || value !== null || value !== undefined )
-        
+
         const asObject = toObj(asArray)
         const filteredObject = toObj(filtered)
         return {asArray, filtered, asObject, filteredObject}

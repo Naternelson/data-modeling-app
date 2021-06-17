@@ -44,6 +44,6 @@ export const loginUser = data => apiCallBegan({
 export const signupUser = data => apiCallBegan({
     url: "/signup",
     method: 'post',
-    data: data.data,
+    data: {user: data.data},
     onSuccess: userAuthenticated.type
 })

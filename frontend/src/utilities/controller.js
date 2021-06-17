@@ -1,1 +1,1 @@
-export const useStateSetter = onChange = stateSetter => e => stateSetter(e.target.value)
+export const useStateSetter = onChange => stateSetter => e => stateSetter(e.target.value)

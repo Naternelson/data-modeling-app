@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :authorized
+    before_action :snake_case_params
 
   def encode_token(payload)
     JWT.encode(payload, ENV['JWT_SECRET'])
@@ -32,4 +33,11 @@ class ApplicationController < ActionController::Base
   def authorized
     render json: {message: 'Please Log In'}, status: :unauthorized unless loggin_in?
   end
+
+  private 
+
+  def snake_case_params
+    request.parameters.deep_transform_keys!(&:underscore)
+  end
+
 end
