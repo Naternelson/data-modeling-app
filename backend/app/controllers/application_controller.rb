@@ -22,16 +22,16 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    user_id = decoded_token[0][:user_id]
+    user_id = decoded_token[0]["user_id"]
     @user = User.find_by id: user_id 
   end
 
-  def loggin_in?
+  def logged_in?
     !!current_user
   end
 
   def authorized
-    render json: {message: 'Please Log In'}, status: :unauthorized unless loggin_in?
+    render json: {message: 'Please Log In'}, status: :unauthorized unless logged_in?
   end
 
   private 

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
+import { apiCallBegan } from '../api'
 const statusTypes =  {LOADING: "loading", LOADED: "loaded", ERRORSTATUS: "error"}
 const {LOADING, LOADED, ERRORSTATUS} = statusTypes
 
@@ -40,7 +40,7 @@ const slice = createSlice({
             state.data[action.payload.project.id].loadStatus = LOADED
         },
         inError: (state, action) => {
-            state.status = ERRORSTATUS,
+            state.status = ERRORSTATUS
             state.error = action.payload.error 
         },
         projectsLoading: (state, action) => {
@@ -60,36 +60,28 @@ export const {projectsAdded, projectsDeleted, projectUpdated} = slice.actions
 const {inError, projectsLoading} = slice.actions
 export default slice.reducer
 
-export const loadProjects = data => () => {
-    const dispatch = useDispatch()
-    dispatch(projectsLoading())
-    return apiCallBegan({
+export const loadProjects = () => apiCallBegan({
         url: "/projects",
         method: 'get',
-        data: data.data,
+        onStart: [projectsLoading.type],
         onSuccess: projectsAdded.type,
         onError: inError.type
     })
-}
-export const patchProject = data => () => {
-    const dispatch = useDispatch()
-    dispatch(projectsLoading(data.data.id))
-    return apiCallBegan({
+
+export const patchProject = data => apiCallBegan({
         url: `/projects/${data.data.id}`,
         method: 'patch',
         data: data.data,
+        onStart: [projectsLoading.type],
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
-}
-export const loadProject = data => () => {
-    const dispatch = useDispatch()
-    dispatch(projectsLoading(data.data.id))
-    return apiCallBegan({
+
+export const loadProject = data =>  apiCallBegan({
         url: `/projects/${data.data.id}`,
         method: 'get',
         data: data.data,
+        onStart: [projectsLoading.type],
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
-}

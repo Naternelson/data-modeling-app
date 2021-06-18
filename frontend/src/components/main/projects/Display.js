@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 const ProjectsDisplay = () => {
-    const dispatch = useDispatch()
-     
-    return  
+
+    return  <h1>Hi mom</h1>
  }
  export default ProjectsDisplay;

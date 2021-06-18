@@ -7,7 +7,7 @@ export const IsLoggedIn = () => {
 
 export const RedirectIfLoggedOut = (props) => {
     const isLoggedIn = IsLoggedIn()
-    const to = props?.to || '/'
+    const to = props?.to || '/login'
     if(!isLoggedIn) return <Redirect to={to}/>
     return false
 }

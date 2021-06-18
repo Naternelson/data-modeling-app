@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   def index
     projects = @user.projects
-    render json: render json: { projects: ProjectSerializer.new(projects) }, status: :ok
+    render json: { projects: ProjectSerializer.new(projects) }, status: :ok
   end
 
   def create

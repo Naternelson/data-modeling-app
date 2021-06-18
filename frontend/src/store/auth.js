@@ -13,8 +13,8 @@ const slice = createSlice({
     reducers: {
         userAuthenticated: (state, action) => {
             state.token = action.payload.jwt
-            state.id = action.payload.id
-            state.user = action.payload.user.attributes
+            state.id = action.payload.user.data.id
+            state.user = action.payload.user.data.attributes
             state.loading = false
         },
         userChanged: (state, action) => {
