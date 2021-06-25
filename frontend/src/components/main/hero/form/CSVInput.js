@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import {formNotReady, transitionFormOn, focusForm, addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
+import {addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
 function Form() {
     const {errors} = useSelector((state) => state.ui.home.CSVForm)
     const dispatch = useDispatch()
@@ -11,16 +11,17 @@ function Form() {
         errDisplay ="block" 
     }
     function changeEvent(e){
+        //
         const fileType = e.target.files[0].name.split(".")[1]
-
-        switch(fileType){
-            case "csv":
-                dispatch(removeErrors({errors: ["wrongFileType"]}))
-                break
-            default:
-                dispatch(addErrors({errors: {
-                    wrongFileType: `The file selected is a .${fileType} file. Please Upload a .csv File.`
-                }}))        }
+        const acceptedFileTypes = ["csv"]
+        const fileMessage = (
+            acceptedFileTypes.count === 0 ?  `No File Types are Accepted` :
+            acceptedFileTypes.count === 1 ? `The file selected is a .${fileType} file. Please Upload  ${acceptedFileTypes[0]} File.` :
+            acceptedFileTypes.count > 2 ? `The file selected is a .${fileType} file. Please Upload either ${acceptedFileTypes.slice(0, acceptedFileTypes.count-1).join(", ")} or ${acceptedFileTypes[acceptedFileTypes.count-1]} File.` : null
+        )
+        const correctFile = acceptedFileTypes.includes(fileType)
+        if(correctFile)dispatch(removeErrors({errors: ["wrongFileType"]}))
+        if(correctFile)dispatch(addErrors({errors: {wrongFileType: fileMessage}}))
     }
     return (
         <div className={rowClasses.join(" ")}>

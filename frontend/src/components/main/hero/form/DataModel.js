@@ -1,7 +1,7 @@
 import React from 'react'
 import {capitalize} from '../../../../utilities/utilities'
 import { useSelector, useDispatch } from "react-redux"
-import { changeCSVModel } from '../../../../store/forms/newCSV'
+import { changeCSVModel } from '../../../../store/forms/project-upload-form'
 import {formNotReady, addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
 function Form() {
     const {errors} = useSelector((state) => state.ui.home.CSVForm)

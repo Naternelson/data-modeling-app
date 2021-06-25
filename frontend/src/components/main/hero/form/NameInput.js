@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import { changeCSVName } from '../../../../store/forms/newCSV'
+import { changeCSVName } from '../../../../store/forms/project-upload-form'
 function Form() {
     const csvName = useSelector((state)=> state.forms.newCSVForm.name)
     const dispatch = useDispatch()
