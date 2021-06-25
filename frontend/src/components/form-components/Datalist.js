@@ -1,9 +1,8 @@
-import Option from './Option'
+import OptionGroup from './OptionGroup'
 const DataList = props => {
     const {id, options} = props
-    const optionGroup = options.map((o, i) => <Option key={i} option={o}/>)
    return  <datalist id={id}>
-       {optionGroup}
+       <OptionGroup options={options}/>
     </datalist>
 }
 export default DataList;

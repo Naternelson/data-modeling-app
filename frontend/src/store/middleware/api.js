@@ -29,47 +29,33 @@ const handleOptions = getState =>  payload => {
 }
 
 const handleDispatch = dispatch => dispatches => data => {
-    dispatches = dispatches.filter( d => !!d)
     //Private Function
     //Dispatch Actions
-    console.log({dispatch,dispatches, data})
-
-    dispatches.forEach( d => {if(d) {
-        console.log({d})
-        Array.isArray(d) ? d.forEach(type => dispatch({type, payload: data})) :
-        dispatch({type: d, payload: data})
+    dispatches = dispatches.filter( d => !!d)
+    dispatches.forEach( d => {
+        if(d) {
+            Array.isArray(d) ? d.forEach(type => dispatch({type, payload: data})) :
+                dispatch({type: d, payload: data})
     }})
 }
 
 const api = ({dispatch, getState}) => next => async action => {
-    const dispatchHandler = handleDispatch(dispatch)
     //Check for API Request
-    if (action.type !== actions.apiCallBegan.type) return next(action)
+    if (action.type !== actions.apiCallBegan.type) return next(action) //Next MiddleWare Action if not an api call
     next(action)
-    let {data, onSuccess, onStart, onError} = action.payload
-    //Before Request Dispatches
-    dispatchHandler([onStart])(data)
-    // if(onStart) {
-    //     Array.isArray(onStart) ? 
-    //         onStart.forEach(type => dispatch({type, payload: data})) : 
-    //         dispatch({onStart, payload: data})
-    // }
-    
-    //Begin API Request
-    
-    try {
-        //Request
-        const res = await axios.request(handleOptions(getState)(action.payload))
-        //After Request Dispatches 
-        dispatchHandler([actions.apiCallSuccess.type, onSuccess])(res.data)
-        // dispatch(actions.apiCallSuccess(res.data))
-        // if(onSuccess) dispatch({type: onSuccess, payload: res.data})
 
+
+    let {data, onSuccess, onStart, onError} = action.payload
+    const dispatchHandler = handleDispatch(dispatch)
+
+    dispatchHandler([onStart])(data) //Pre API Dispatch
+
+    //API Request
+    try {
+        const res = await axios.request(handleOptions(getState)(action.payload))
+        dispatchHandler([actions.apiCallSuccess.type, onSuccess])(res.data) //Succesful Post API Call Dispatch 
     } catch(error) {
-        //Error Dispatches
-        dispatchHandler([actions.apiCallFailed.type, onError])(error)
-        // dispatch(actions.apiCallFailed(error))
-        // if(onError) dispatch({type: onError, payload: error})
+        dispatchHandler([actions.apiCallFailed.type, onError])(error) //Unsuccessful Post API Call Dispatch
     }
 }
 
