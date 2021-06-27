@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   private 
 
   def project_params
-    params.require(:project).permit(:attachment, :name, :model)
+    binding.pry
+    params.permit(:attachment, :name, :model)
   end
 end

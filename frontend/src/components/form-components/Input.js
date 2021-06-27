@@ -8,7 +8,6 @@ const  InputGroup = props => {
 
     //Defaults
     const listId = !options || options?.count === 0 ? "" : (id || name) + "List"
-    console.log({listId})
     onChange = onChange || anon
     type = type || "text"
     hasLabel =  hasLabel !== false 

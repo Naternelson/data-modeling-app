@@ -63,7 +63,7 @@ export default slice.reducer
 export const loadProjects = () => apiCallBegan({
         url: "/projects",
         method: 'get',
-        onStart: [projectsLoading.type],
+        onStart: projectsLoading.type,
         onSuccess: projectsAdded.type,
         onError: inError.type
     })
@@ -72,7 +72,7 @@ export const patchProject = data => apiCallBegan({
         url: `/projects/${data.data.id}`,
         method: 'patch',
         data: data.data,
-        onStart: [projectsLoading.type],
+        onStart: projectsLoading.type,
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
@@ -81,7 +81,7 @@ export const loadProject = data =>  apiCallBegan({
         url: `/projects/${data.data.id}`,
         method: 'get',
         data: data.data,
-        onStart: [projectsLoading.type],
+        onStart: projectsLoading.type,
         onSuccess: projectUpdated.type,
         onError: inError.type
     })

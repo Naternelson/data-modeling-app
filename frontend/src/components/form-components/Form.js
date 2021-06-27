@@ -1,6 +1,5 @@
 import Input from './Input'
 const Form = props => {
-    console.log("form")
     //Defaults
     let  {id, submit, autocomplete, name, children} = props
     const isOn = autocomplete !==false ? "on" : "off"

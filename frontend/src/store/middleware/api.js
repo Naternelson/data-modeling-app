@@ -3,12 +3,12 @@
 import axios from 'axios'
 import * as actions from '../api'
 
-const handleHeaders = getStateFn => headers => {
+const handleHeaders = getStateFn => headers => multi =>  {
     //Private Function
     //Construct an Request header with standard content, available token, and/or optional headers
     const token = getStateFn().auth.token
     const auth = {'Authorization': `Bearer ${token}`}
-    const standardHeader = {"Content-Type":"application/json"}
+    const standardHeader = {"Content-Type": multi ? "multipart/form-data" : "application/json"}
     return (
         headers && token ? {...headers, ...auth, ...standardHeader} : 
         headers && !token ? {...headers, ...standardHeader} :
@@ -17,18 +17,19 @@ const handleHeaders = getStateFn => headers => {
         ) 
 }
 
-const handleOptions = getState =>  payload => {
+export const handleOptions = getState =>  payload => {
     //Private Function
     //Construct axios request options
-    const {url, method, data, headers} = payload
+    const {url, method, data, headers, multi } = payload
+
     return {
         baseURL: process.env.REACT_APP_BASE_URL, 
         url, method, data, 
-        headers: handleHeaders(getState)(headers) 
+        headers: handleHeaders(getState)(headers)(multi)
     }
 }
 
-const handleDispatch = dispatch => dispatches => data => {
+export const handleDispatch = dispatch => dispatches => data => {
     //Private Function
     //Dispatch Actions
     dispatches = dispatches.filter( d => !!d)
