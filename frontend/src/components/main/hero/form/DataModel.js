@@ -2,9 +2,9 @@ import React from 'react'
 import {capitalize} from '../../../../utilities/utilities'
 import { useSelector, useDispatch } from "react-redux"
 import { changeCSVModel } from '../../../../store/forms/project-upload-form'
-import {formNotReady, addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
+import {formNotReady, addErrors, removeErrors} from "../../../../store/ui/home/newProjectForm"
 function Form() {
-    const {errors} = useSelector((state) => state.ui.home.CSVForm)
+    const {errors} = useSelector((state) => state.ui.home.newProjectForm)
     const dispatch = useDispatch()
     const rowClasses = ["form-row"]
     const options = ["choice-model"]

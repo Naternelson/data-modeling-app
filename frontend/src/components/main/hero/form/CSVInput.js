@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
-import {addErrors, removeErrors} from "../../../../store/ui/home/CSVForm"
+import {addErrors, removeErrors} from "../../../../store/ui/home/newProjectForm"
 function Form() {
-    const {errors} = useSelector((state) => state.ui.home.CSVForm)
+    const {errors} = useSelector((state) => state.ui.home.newProjectForm)
     const dispatch = useDispatch()
     const rowClasses = ["form-row"]
     let errDisplay = "none" 

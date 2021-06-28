@@ -1,7 +1,7 @@
 //API Middleware
 //Run Multiple Dispatches on an async API Request
 import axios from 'axios'
-import * as actions from '../api'
+import * as actions from './middleware-actions'
 
 const handleHeaders = getStateFn => headers => multi =>  {
     //Private Function
@@ -56,7 +56,7 @@ const api = ({dispatch, getState}) => next => async action => {
         const res = await axios.request(handleOptions(getState)(action.payload))
         dispatchHandler([actions.apiCallSuccess.type, onSuccess])(res.data) //Succesful Post API Call Dispatch 
     } catch(error) {
-        dispatchHandler([actions.apiCallFailed.type, onError])(error) //Unsuccessful Post API Call Dispatch
+        dispatchHandler([actions.apiCallFailed.type, onError])(error.message) //Unsuccessful Post API Call Dispatch
     }
 }
 

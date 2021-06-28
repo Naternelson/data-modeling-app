@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { apiCallBegan } from './api'
+import { apiCallBegan } from './middleware/middleware-actions'
 //Slice
 const slice = createSlice({
     name: "auth",

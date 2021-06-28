@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import { changeCSVName } from '../../../../store/forms/project-upload-form'
 function Form() {
-    const csvName = useSelector((state)=> state.forms.newCSVForm.name)
+    const csvName = useSelector((state)=> state.forms.newProjectForm.name)
     const dispatch = useDispatch()
     function changeEvent(e){
         dispatch(changeCSVName({name: e.target.value}))

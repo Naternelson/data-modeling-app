@@ -7,8 +7,7 @@ class ProjectsController < ApplicationController
   def create
     project = @user.projects.build project_params
     project.status = Project::STATUSTYPES[:uninitiated]
-    project.save
-    if project
+    if project.save
       render json: { projects: ProjectSerializer.new(project) }, status: :ok
     else 
       render json: { error: project.errors.full_messages}, status: :not_acceptable
@@ -25,7 +24,6 @@ class ProjectsController < ApplicationController
   private 
 
   def project_params
-    binding.pry
     params.permit(:attachment, :name, :model)
   end
 end

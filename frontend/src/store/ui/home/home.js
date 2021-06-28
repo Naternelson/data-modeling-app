@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import CSVFormReducer from "./CSVForm"
+import newProjectForm from "./newProjectForm"
 
 export default combineReducers({
-    CSVForm: CSVFormReducer
+    newProjectForm
 })

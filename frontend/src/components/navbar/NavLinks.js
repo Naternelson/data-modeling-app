@@ -1,6 +1,6 @@
 import "./Navbar.css"
 import { NavLink } from 'react-router-dom'; 
-import { resetForm } from '../../store/ui/home/CSVForm'
+import { resetForm } from '../../store/ui/home/newProjectForm'
 import { useDispatch, useSelector } from "react-redux"
 export default function NavLinks(){
     const dispatch = useDispatch()

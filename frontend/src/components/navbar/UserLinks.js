@@ -2,7 +2,7 @@ import "./Navbar.css"
 import { NavLink, useHistory } from 'react-router-dom'; 
 import { useSelector, useDispatch } from "react-redux"
 import { logoutUser } from '../../store/auth'
-import { resetForm } from '../../store/ui/home/CSVForm'
+import { resetForm } from '../../store/ui/home/newProjectForm'
 export default function UserLinks(){
     const isLoggedIn = useSelector(s => !!s.auth.token)
     const loginDisplay = isLoggedIn ? "Logout" : "Login / Signup"

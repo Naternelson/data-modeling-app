@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { apiCallBegan } from '../api'
+import { apiCallBegan } from '../middleware/middleware-actions'
 const statusTypes =  {LOADING: "loading", LOADED: "loaded", ERRORSTATUS: "error"}
 const {LOADING, LOADED, ERRORSTATUS} = statusTypes
 

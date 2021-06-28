@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 //Slice
 const slice = createSlice({
-    name: "CSVForm",
+    name: "project/uploadForm",
     initialState: {focus: "blurred", status: false, errors: {}},
     reducers: {
         transitionFormOn: (state) => {
