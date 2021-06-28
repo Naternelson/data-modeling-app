@@ -15,10 +15,10 @@ const slice = createSlice({
         projectsAdded: (state, action) => {
             state.data = {}
             state.order = []
-            for(let i of action.payload.projects){
-                state.data[i.id] = i
+            for(let i of action.payload.projects.data){
+                state.data[i.id] = i.attributes
                 state.data[i.id].loadStatus = LOADED 
-                state.order.push(i)
+                state.order.push(i.id)
             }
             state.status = LOADED
         },
@@ -44,13 +44,15 @@ const slice = createSlice({
             state.error = action.payload.error 
         },
         projectsLoading: (state, action) => {
-            if(action.payload.id) {
-                state.data[action.payload.id].loadStatus = LOADING
-            } else {
-                delete state.error; 
-                state.status = LOADING
-            }
-            
+
+            // if(action && action.payload.id) {
+            //     console.log(action.payload)
+            //     state.data[action.payload.id].loadStatus = LOADING
+            // } else {
+            //     delete state.error; 
+            //     state.status = LOADING
+            // }
+            return state
         } 
 
     }
