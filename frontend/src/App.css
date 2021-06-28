@@ -1,3 +1,9 @@
+#root {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   margin: 0 40px;
 }
@@ -20,4 +26,16 @@ form label{
 }
 .input-btn{
   display: inline
+}
+label{
+  color: #565857;
+}
+
+.project-display{
+  background-color: #F5D3C8;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: 150px;
+  height: 100%;
 }

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import './Button.css'
 export const SubmitBtn = props => {
     let {value, classArr, onClick} = props
     value = value ? value : "Submit"

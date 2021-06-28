@@ -11,7 +11,7 @@ const ProjectMain = () => {
         dispatch(loadProjects())
     }
     useEffect(componentDidMount, [])
-    return  RedirectIfLoggedOut() || <div className={"container"}>
+    return  RedirectIfLoggedOut() || <div className={"container project-display"}>
         <ProjectsDisplay/>
      </div>
  }

@@ -9,7 +9,14 @@ form div.input-group{
     padding: 5px 0;
 }
 
-form input[type=text], select{
+form input, select{
     width: 100%;
-    padding: 2px 0 2px 0;
+    padding: 2px;
+    border: 0.1em solid #734B5E;
+
+}
+
+form input[type=file]{
+    border: 0;
+
 }
