@@ -1,4 +1,5 @@
 import Input from './Input'
+import './Form.css'
 const Form = props => {
     //Defaults
     let  {id, submit, autocomplete, name, children, cssClasses} = props

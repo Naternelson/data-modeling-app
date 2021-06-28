@@ -1,12 +1,15 @@
 nav {
-    background-color: aliceblue;
+    background-color: rgb(190, 213, 233);
     display: flex;
     justify-content: space-between;
-    padding: 0 20px ;
+    padding: 5px 20px ;
     align-content: center;
 }
-nav span{
+/* nav span{
     background-color: aqua;
     width: 100%;
+    padding: 0 20px;
+} */
+nav div.row a{
     padding: 0 20px;
 }

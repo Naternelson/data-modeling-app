@@ -22,9 +22,6 @@ class ProjectsController < ApplicationController
       render  json: { project: {id: id}}, status: :ok
   end
 
-  def show
-  end
-
   def update 
     @project.update project_params
     if @project.valid? 
