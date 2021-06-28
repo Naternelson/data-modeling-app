@@ -46,7 +46,6 @@ const slice = createSlice({
         projectsLoading: (state, action) => {
 
             // if(action && action.payload.id) {
-            //     console.log(action.payload)
             //     state.data[action.payload.id].loadStatus = LOADING
             // } else {
             //     delete state.error; 
@@ -71,19 +70,24 @@ export const loadProjects = () => apiCallBegan({
     })
 
 export const patchProject = data => apiCallBegan({
-        url: `/projects/${data.data.id}`,
+        url: `/projects/${data.id}`,
         method: 'patch',
         data: data.data,
-        onStart: projectsLoading.type,
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
 
 export const loadProject = data =>  apiCallBegan({
-        url: `/projects/${data.data.id}`,
+        url: `/projects/${data.id}`,
         method: 'get',
-        data: data.data,
+        data: data,
         onStart: projectsLoading.type,
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
+export const deleteProject = data =>  apiCallBegan({
+    url: `/projects/${data.id}`,
+    method: 'delete',
+    onSuccess: projectsDeleted.type,
+    onError: inError.type
+})

@@ -4,6 +4,12 @@ export const SubmitBtn = props => {
     value = value ? value : "Submit"
     return <Btn type={"submit"} classArr={classArr} onClick={onClick} value={value}/>
 }
+
+export const ButtonGroup = props => {
+    const {children} = props
+    return <div className={"button-group"}>{children}</div>
+}
+
 const Btn = props => {
     let {value, classArr, onClick, type, to} = props
     const className = Array.isArray(classArr) ? classArr.join(" ") : ""
@@ -14,5 +20,7 @@ const Btn = props => {
     const result = to ? <NavLink to={to}>{btn}</NavLink> : btn
     return result
 }
+
+
 
 export default Btn

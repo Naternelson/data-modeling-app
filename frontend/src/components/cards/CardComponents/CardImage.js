@@ -1,6 +1,5 @@
 import "../Card.css"
-export default function CardDisplay(props){
+export default function CardImage(props){
     let img = props?.img ? props.img : "display-placeholder.gif"
-    console.log(img)
     return <img src={`/${img}`} alt={""}></img>
 }

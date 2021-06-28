@@ -1,7 +1,17 @@
 import "../Card.css"
-export default function CardDescription(props = {title: "Title"}){
-    const title = props?.title ? props.title : "Title"
-    return <div>
-        <span className={"title"}>{title}</span>
+import { capitalize } from "../../../utilities/capitalize"
+export default function CardDescription(props){
+    let {cssClasses, title, body} = props
+    if (Array.isArray(cssClasses)) {
+        cssClasses.push("card-description")
+        cssClasses = cssClasses.join(" ")
+    } else {
+        cssClasses = "card-description"
+    }
+    const bodySection = body ? <p>{body}</p> : ""
+
+    return <div className={cssClasses}>
+        <span className="title">{capitalize(title)}</span>
+        {bodySection}
     </div>
 }

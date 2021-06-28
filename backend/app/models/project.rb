@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
     STATUSTYPES = { 
         uninitiated: "uninitiated",
-        progress: "in_progress",
+        progress: "computing",
         error: "error",
         paused: "paused",
         complete: "complete"
