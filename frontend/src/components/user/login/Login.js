@@ -20,15 +20,15 @@ const Login = () => {
 
 
     //render
-    return RedirectIfLoggedIn() || <>
+    return RedirectIfLoggedIn() || <div className={'center-form'}>
     <Form submit={submitEvent}>
         <h1 className="title">Login with Username or Email</h1>
         <Input name={"username"} onChange={stateSetter(setUsername)}/>
-        <Input name={"password"} onChange={stateSetter(setPassword)}/>
+        <Input type={"password"} name={"password"} onChange={stateSetter(setPassword)}/>
         <SubmitBtn/>
     </Form>
     <span>New Here? Please <Btn to="/signup" classArr={["btn-flat"]}value="Sign up"/></span>
-    </>
+    </div>
 }
 
 export default Login;

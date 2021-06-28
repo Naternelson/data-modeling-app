@@ -27,7 +27,7 @@ const Signup = () => {
     }
 
     //render
-    return RedirectIfLoggedIn() || <><Form submit={submitEvent}>
+    return RedirectIfLoggedIn() || <div className={"center-form"}><Form submit={submitEvent}>
         <h1 className="title">Please Sign Up</h1>
         <Input name={"firstName"} placeholder={"John"} onChange={stateSetter(setFirstName)} value={firstName}/>
         <Input name={"lastName"} placeholder={"Smith"} onChange={stateSetter(setLastName)} value={lastName}/>
@@ -38,6 +38,6 @@ const Signup = () => {
         <SubmitBtn/>
     </Form>
     <Btn to="/login" classArr={["btn-flat"]}value="Back to Login"/>
-    </>
+    </div>
 }
 export default Signup;

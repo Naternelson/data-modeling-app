@@ -10,13 +10,17 @@ form div.input-group{
 }
 
 form input, select{
-    width: 100%;
-    padding: 2px;
+    width: 97%;
+    padding: 7px;
     border: 0.1em solid #734B5E;
-
+    
 }
 
 form input[type=file]{
     border: 0;
 
+}
+
+label {
+    margin-bottom: 7px;
 }

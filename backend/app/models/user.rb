@@ -6,7 +6,7 @@ class User < ApplicationRecord
     validates :username, uniqueness: true, allow_nil: true
     validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => [:create, :update]
     
-    before_validation(on: [:create, :update]) do 
-        attributes.each  {|k,v| self[k] = v.strip unless v == nil}
-    end
+    # before_validation(on: [:create, :update]) do 
+    #     attributes.each  {|k,v| self[k] = v.strip unless v == nil}
+    # end
 end

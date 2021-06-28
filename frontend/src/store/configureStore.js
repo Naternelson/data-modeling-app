@@ -3,7 +3,7 @@ import reducer from "./reducer"
 import api from './middleware/api'
 import formApi from './middleware/form-api'
 import {apiFormCallBegan} from './middleware/middleware-actions'
-export default function ConfirgureStore(){
+export default function ConfigureStore(){
     return configureStore({
         reducer,
         middleware: [

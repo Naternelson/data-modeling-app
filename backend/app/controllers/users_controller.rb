@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create user_params 
-        binding.pry
         if @user && @user.valid?
             token = encode_token(user_id: @user.id)
             render json: { user: UserSerializer.new(@user), jwt: token }, status: :created
