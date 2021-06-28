@@ -14,8 +14,6 @@ const formApi = ({dispatch, getState}) => next => async action => {
 
     
     let { data, onSuccess, onStart, onError} = action.payload
-    // console.log({project: data.project, headers: data.project.getHeaders()})
-    // const endPoint = process.env.REACT_APP_BASE_URL + url
     const dispatchHandler = handleDispatch(dispatch)
     const options = handleOptions(getState)({...action.payload, multi: true, method: 'post'})
     dispatchHandler([onStart])(data) //Pre API Dispatch

@@ -49,7 +49,6 @@ const api = ({dispatch, getState}) => next => async action => {
     let {data, onSuccess, onStart, onError} = action.payload
     const dispatchHandler = handleDispatch(dispatch)
 
-    console.log({onStart, data})
     dispatchHandler([onStart])(data) //Pre API Dispatch
 
     //API Request

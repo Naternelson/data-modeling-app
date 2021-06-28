@@ -22,22 +22,21 @@ const slice = createSlice({
             }
             state.status = LOADED
         },
-        projectsDeleted: (state, action) => {
-            if(action.all){
-                state.order = []
-                state.data = {}
-                return
-            }
-            if(action.payload.ids){
-                for(let id of action.payload.ids) delete state.data[id]
-                state.order.filter(id => !action.payload.includes(id) )
-            }
-            if (action.payload.id) delete state.data[action.payload.id]
+        projectDeleted: (state, action) => {
+            const id = action.payload.project.id
+            delete state.data[action.payload.project.id]
+
+            state.order = state.order.filter(i => i.toString() !== id.toString())
+
             state.status = LOADED
         },
         projectUpdated: (state, action) => {
-            state.data[action.payload.project.id] = action.payload.project 
-            state.data[action.payload.project.id].loadStatus = LOADED
+            const id = action.payload.project.data.id
+            const arrIndex = state.order.indexOf(id)
+
+            state.data[id] = action.payload.project.data.attributes
+            if(arrIndex === -1) state.order.push(id)
+            state.data[id].loadStatus = LOADED
         },
         inError: (state, action) => {
             state.status = ERRORSTATUS
@@ -57,7 +56,7 @@ const slice = createSlice({
     }
 })
 
-export const {projectsAdded, projectsDeleted, projectUpdated} = slice.actions
+export const {projectsAdded, projectDeleted, projectUpdated} = slice.actions
 const {inError, projectsLoading} = slice.actions
 export default slice.reducer
 
@@ -72,7 +71,7 @@ export const loadProjects = () => apiCallBegan({
 export const patchProject = data => apiCallBegan({
         url: `/projects/${data.id}`,
         method: 'patch',
-        data: data.data,
+        data,
         onSuccess: projectUpdated.type,
         onError: inError.type
     })
@@ -88,6 +87,6 @@ export const loadProject = data =>  apiCallBegan({
 export const deleteProject = data =>  apiCallBegan({
     url: `/projects/${data.id}`,
     method: 'delete',
-    onSuccess: projectsDeleted.type,
+    onSuccess: projectDeleted.type,
     onError: inError.type
 })
